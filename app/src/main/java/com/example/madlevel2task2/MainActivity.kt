@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        for (i in Question.QUESTIONS_LIST.indices) {
-            questions.add(Question(Question.QUESTIONS_LIST[i], Question.QUESTION_ANSWERS[i]))
+        for (i in Question.QUESTIONS.indices) {
+            questions.add(Question(Question.QUESTIONS[i].textValue, Question.QUESTIONS[i].answer))
         }
 
         createItemTouchHelper().attachToRecyclerView(binding.rvQuestions)
@@ -61,8 +61,7 @@ class MainActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 val selectedQuestion: Question = questions[position]
 
-                if (direction == ItemTouchHelper.RIGHT && selectedQuestion.answer ||
-                    direction == ItemTouchHelper.LEFT && !selectedQuestion.answer
+                if (direction == selectedQuestion.answer
                 ) {
                     questions.removeAt(position)
                 } else {
